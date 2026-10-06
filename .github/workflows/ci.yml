@@ -1,0 +1,21 @@
+name: Syntax and packaging
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  python:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.12', '3.14']
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Compile Python syntax
+        run: python -m compileall -q email_recipient_audit.py tools
+      - name: Build source archive
+        run: python tools/package.py

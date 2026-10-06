@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "analyzer_version": "0.1.0",
+  "complete": true,
+  "scope": "captured_to_cc_bcc_headers_only",
+  "identities": "per_report_ordinal_ids",
+  "summary": {
+    "recipient_occurrences": 2,
+    "unique_recipients": 2,
+    "errors": 0,
+    "warnings": 0
+  },
+  "recipients": [
+    {
+      "id": "r1",
+      "field": "to",
+      "allowed": true
+    },
+    {
+      "id": "r2",
+      "field": "cc",
+      "allowed": true
+    }
+  ],
+  "issues": [],
+  "limitations": [
+    "Headers do not prove SMTP envelope recipients or delivery.",
+    "Bcc may be removed before a received message is captured.",
+    "Local parts are case sensitive; aliases and plus-addresses are not merged."
+  ]
+}

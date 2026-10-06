@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "analyzer_version": "0.1.0",
+  "complete": true,
+  "scope": "captured_to_cc_bcc_headers_only",
+  "identities": "per_report_ordinal_ids",
+  "summary": {
+    "recipient_occurrences": 4,
+    "unique_recipients": 3,
+    "errors": 3,
+    "warnings": 1
+  },
+  "recipients": [
+    {
+      "id": "r1",
+      "field": "to",
+      "allowed": true
+    },
+    {
+      "id": "r2",
+      "field": "to",
+      "allowed": false
+    },
+    {
+      "id": "r1",
+      "field": "cc",
+      "allowed": false
+    },
+    {
+      "id": "r3",
+      "field": "cc",
+      "allowed": false
+    }
+  ],
+  "issues": [
+    {
+      "code": "unexpected_recipient",
+      "severity": "error",
+      "message": "Mailbox is not allowed in this field.",
+      "field": "to",
+      "recipient_id": "r2"
+    },
+    {
+      "code": "unexpected_recipient",
+      "severity": "error",
+      "message": "Mailbox is not allowed in this field.",
+      "field": "cc",
+      "recipient_id": "r1"
+    },
+    {
+      "code": "unexpected_recipient",
+      "severity": "error",
+      "message": "Mailbox is not allowed in this field.",
+      "field": "cc",
+      "recipient_id": "r3"
+    },
+    {
+      "code": "duplicate_recipient",
+      "severity": "warning",
+      "message": "Mailbox occurs more than once across recipient fields.",
+      "field": "",
+      "recipient_id": "r1"
+    }
+  ],
+  "limitations": [
+    "Headers do not prove SMTP envelope recipients or delivery.",
+    "Bcc may be removed before a received message is captured.",
+    "Local parts are case sensitive; aliases and plus-addresses are not merged."
+  ]
+}

@@ -1,0 +1,10 @@
+From: Demo Shop <shop@example.test>
+To: Customer <customer@example.test>
+Cc: Accounts <accounts@example.test>
+Subject: Synthetic invoice fixture
+Date: Tue, 6 Oct 2026 10:00:00 +0000
+Message-ID: <synthetic-invoice-1@example.test>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+
+Synthetic example only. No order, customer, or real invoice is included.

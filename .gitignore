@@ -1,0 +1,7 @@
+/dist/
+**/__pycache__/
+*.py[cod]
+.venv/
+.DS_Store
+*.eml.local
+policy.local.json

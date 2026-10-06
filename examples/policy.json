@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "allowed": {
+    "to": ["customer@example.test"],
+    "cc": ["accounts@example.test"],
+    "bcc": []
+  },
+  "required": {
+    "to": ["customer@example.test"]
+  },
+  "max_recipients": 5,
+  "allow_bcc": false
+}

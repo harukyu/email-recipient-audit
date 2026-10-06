@@ -1,0 +1,37 @@
+name: Developer preview
+on:
+  push:
+    tags: ['v*']
+  release:
+    types: [published]
+permissions:
+  contents: write
+concurrency:
+  group: release-${{ github.repository }}-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.14'
+      - name: Compile Python syntax
+        run: python -m compileall -q email_recipient_audit.py tools
+      - name: Build source archive
+        run: python tools/package.py
+      - name: Verify tag version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: python -c 'import json, os; assert os.environ["RELEASE_TAG"] == "v" + json.load(open("project.json"))["version"]'
+      - name: Attach download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" dist/*.zip dist/*.sha256 --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" dist/*.zip dist/*.sha256 --prerelease --title "Email Recipient Audit $GITHUB_REF_NAME" --notes-file CHANGELOG.md
+          fi

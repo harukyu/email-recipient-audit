@@ -1,0 +1,16 @@
+{
+  "slug": "email-recipient-audit",
+  "title": "Email Recipient Audit",
+  "version": "0.1.0",
+  "module": "email_recipient_audit.py",
+  "python_minimum": "3.10",
+  "license": "MIT",
+  "examples": [
+    "examples/customer-invoice.eml",
+    "examples/unexpected-recipient.eml",
+    "examples/policy.json",
+    "examples/reports/customer-invoice.json",
+    "examples/reports/unexpected-recipient.json",
+    "docs/demo.html"
+  ]
+}
